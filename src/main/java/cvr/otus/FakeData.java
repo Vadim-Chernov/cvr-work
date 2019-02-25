@@ -27,7 +27,6 @@ public class FakeData {
     }
 
     public static void createQuestions() {
-        float r=125f;
         File file = new File("questions.csv");
         if (!file.exists())
             try {
@@ -37,7 +36,7 @@ public class FakeData {
                 String answers;
                 writer.write(question);
                 question = "1,Выбирете допустимое объявление java,";
-                answers = " int i=0;: int i=125;: int i=\"asd\";: Int i==125; : float r=125f;,2:1\n";
+                answers = " int i=0;: int i=125;: int i=\"asd\";: Int i==125; : float r=125f;,2:1:5\n";
                 writer.write(question);
                 writer.write(answers);
 

@@ -2,7 +2,6 @@ package cvr.otus.service;
 
 import au.com.bytecode.opencsv.CSVReader;
 import cvr.otus.domain.Question;
-import cvr.otus.domain.Student;
 import cvr.otus.utils.Util;
 
 import java.io.FileReader;
@@ -34,7 +33,6 @@ public class QuestionService implements IQuestionService {
     @Override
     public double checkQuestion(int num, String answer) {
         Question question = getQuestion(num);
-        //String[] split = answer.split(",");
         int[] ints = Util.StringToIntArray(answer, ",");
         int[] trueAns = question.getTrueAns();
         double ret = Util.examineArrays(ints, trueAns);
@@ -54,7 +52,7 @@ public class QuestionService implements IQuestionService {
     }
 
     private static List<Question> loadQuestions() throws IOException {
-        List<Question> reslt = new ArrayList<>();
+        List<Question> result = new ArrayList<>();
         CSVReader reader = new CSVReader(new FileReader("questions.csv"), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
@@ -66,11 +64,9 @@ public class QuestionService implements IQuestionService {
                 question.setAnswers(split);
                 int[] ints = Util.StringToIntArray(nextLine[3], ":");
                 question.setTrueAns(ints);
-                reslt.add(question);
+                result.add(question);
             }
         }
-        return reslt;
+        return result;
     }
-
-
 }

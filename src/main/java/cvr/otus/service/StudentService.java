@@ -1,7 +1,6 @@
 package cvr.otus.service;
 
 import au.com.bytecode.opencsv.CSVReader;
-import cvr.otus.FakeData;
 import cvr.otus.domain.Student;
 
 import java.io.FileReader;
@@ -12,8 +11,7 @@ import java.util.List;
 public class StudentService implements IStudentService {
     private List<Student> students;
 
-    @Override
-    public List<Student> getStudentList() {
+    private List<Student> getStudentList() {
         if (students == null) {
             try {
                 students = loadStudents();
