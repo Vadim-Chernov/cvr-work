@@ -6,3 +6,4 @@ studets.csv и questions.csv.
 2) petrov    22
 3) sidorov   333
 
+Остальное работает согласно ТЗ
