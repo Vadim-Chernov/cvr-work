@@ -83,7 +83,6 @@ public class Main {
     }
 
     private Student login() {
-        IStudentService service = context.getBean(IStudentService.class);
         Scanner scanner = new Scanner(System.in);
         int count = 3;
         while (count-- > 0) {
@@ -92,14 +91,13 @@ public class Main {
             System.out.print("Пароль  : ");
             String password = scanner.next();
 
-            student = service.login(name, password);
+            student = context.getBean(IStudentService.class).login(name, password);
             if (student != null)
                 return student;
             else {
-                if (count > 0) {
-                    System.out.println("Попробуёте ещё раз");
-                    System.out.println("осталось " + count + " попыток");
-                } else
+                if (count > 0)
+                    System.out.println("Попробуёте ещё раз. Осталось " + count + " попыток");
+                 else
                     System.out.println("Попытки исчернаны, выход из программы");
             }
         }

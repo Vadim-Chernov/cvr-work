@@ -47,7 +47,7 @@ public class QuestionService implements IQuestionService {
         return getQuestions().size();
     }
 
-    private static List<Question> loadQuestions() throws IOException {
+    private List<Question> loadQuestions() throws IOException {
         List<Question> result = new ArrayList<>();
         CSVReader reader = new CSVReader(new FileReader("questions.csv"), ',', '"', 1);
         String[] nextLine;
