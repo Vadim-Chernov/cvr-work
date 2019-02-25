@@ -35,7 +35,7 @@ public class FakeData {
                 String question = "id,text,answers,trueAns\n";
                 String answers;
                 writer.write(question);
-                question = "1,Выбирете допустимое объявление java,";
+                question = "1,Выбирете допустимые объявления java,";
                 answers = " int i=0;: int i=125;: int i=\"asd\";: Int i==125; : float r=125f;,2:1:5\n";
                 writer.write(question);
                 writer.write(answers);

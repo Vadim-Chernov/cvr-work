@@ -1,6 +1,7 @@
 package cvr.otus.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
+import cvr.otus.FakeData;
 import cvr.otus.domain.Question;
 import cvr.otus.utils.Util;
 
@@ -36,4 +37,7 @@ public class QuestionDaoImpl implements QuestionDao {
         return result;
     }
 
+    private void createFake() {
+        FakeData.createQuestions();
+    }
 }

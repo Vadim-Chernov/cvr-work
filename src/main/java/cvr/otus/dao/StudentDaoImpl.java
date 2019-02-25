@@ -1,6 +1,7 @@
 package cvr.otus.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
+import cvr.otus.FakeData;
 import cvr.otus.domain.Student;
 
 import java.io.FileReader;
@@ -29,5 +30,9 @@ public class StudentDaoImpl implements StudentDao {
             e.printStackTrace();
         }
         return students;
+    }
+
+    private void createFake() {
+        FakeData.createStudents();
     }
 }
