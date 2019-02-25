@@ -1,6 +1,5 @@
 package cvr.otus.utils;
 
-import java.util.Arrays;
 
 public class Util {
     public static int[] StringToIntArray(String str, String del) {
@@ -23,11 +22,12 @@ public class Util {
 
     public static double examineArrays(int[] a1, int[] res) {
         double ret = 0;
-        int length = res.length;
-        if (a1.length > res.length) {
-            length = a1.length;
-        } else length = res.length;
-        double delta = 5d/length;
+        int len;
+        if (a1.length > res.length)
+            len = a1.length;
+        else
+            len = res.length;
+        double delta = 5d / len;
 
         for (int elem : a1) {
             if (elementExists(elem, res))
@@ -37,10 +37,4 @@ public class Util {
     }
 
 
-    public static void main(String[] args) {
-        int[] a1 = {1,4};
-        int[] res = {4};
-        double compare = examineArrays(a1, res);
-        System.out.println(compare);
-    }
 }

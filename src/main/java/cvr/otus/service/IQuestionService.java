@@ -10,7 +10,7 @@ public interface IQuestionService {
 
     Question getQuestion(int num);
 
-    double checkQuestion(int num, String answer);
+    void checkQuestion(int num, String answer);
 
     Map<Integer, Double> getResult();
 

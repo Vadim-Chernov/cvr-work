@@ -31,13 +31,9 @@ public class QuestionService implements IQuestionService {
 
 
     @Override
-    public double checkQuestion(int num, String answer) {
-        Question question = getQuestion(num);
-        int[] ints = Util.StringToIntArray(answer, ",");
-        int[] trueAns = question.getTrueAns();
-        double ret = Util.examineArrays(ints, trueAns);
-        result.put(num,ret);
-        return ret;
+    public void checkQuestion(int num, String answer) {
+        double ret = Util.examineArrays(Util.StringToIntArray(answer, ","), getQuestion(num).getTrueAns());
+        result.put(num, ret);
     }
 
     @Override
@@ -56,16 +52,12 @@ public class QuestionService implements IQuestionService {
         CSVReader reader = new CSVReader(new FileReader("questions.csv"), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
-            if (nextLine != null) {
-                Question question = new Question();
-                question.setId(Integer.parseInt(nextLine[0]));
-                question.setText(nextLine[1]);
-                String[] split = nextLine[2].split(":");
-                question.setAnswers(split);
-                int[] ints = Util.StringToIntArray(nextLine[3], ":");
-                question.setTrueAns(ints);
-                result.add(question);
-            }
+            Question question = new Question();
+            question.setId(Integer.parseInt(nextLine[0]));
+            question.setText(nextLine[1]);
+            question.setAnswers(nextLine[2].split(":"));
+            question.setTrueAns(Util.StringToIntArray(nextLine[3], ":"));
+            result.add(question);
         }
         return result;
     }

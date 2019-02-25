@@ -24,7 +24,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Программа тестирования студентов");
         Main mm = new Main();
         mm.createFakes();
@@ -38,14 +38,13 @@ public class Main {
     }
 
     private void printResult() {
-        System.out.println(student.getName() + ",  Ваш результат:");
+        System.out.println("Товарищ "+student.getName() + ",  Ваш результат:");
         Map<Integer, Double> result = service.getResult();
         System.out.println("№вопроса      Оценка");
         System.out.println("--------      ------");
         double res = 0.0;
         int size = result.size();
         for (int i = 0; i < size; i++) {
-//            res+=
             Double dou = result.get(i);
             System.out.println("  " + (i + 1) + "            " + dou);
             res += dou;
@@ -63,14 +62,13 @@ public class Main {
             printQuestion(service.getQuestion(i));
             answer(i);
         }
-
     }
 
     private void answer(int i) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ваш ответ: ");
         String ans = scanner.next();
-        double reslt = service.checkQuestion(i, ans);
+        service.checkQuestion(i, ans);
     }
 
     private void printQuestion(Question question) {
@@ -89,11 +87,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int count = 3;
         while (count-- > 0) {
-            String name, password;
             System.out.print("Ваше имя: ");
-            name = scanner.next();
+            String name = scanner.next();
             System.out.print("Пароль  : ");
-            password = scanner.next();
+            String password = scanner.next();
 
             student = service.login(name, password);
             if (student != null)
