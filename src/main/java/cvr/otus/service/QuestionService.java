@@ -1,26 +1,28 @@
 package cvr.otus.service;
 
-import au.com.bytecode.opencsv.CSVReader;
+import cvr.otus.dao.IQuestionDao;
 import cvr.otus.domain.Question;
 import cvr.otus.utils.Util;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class QuestionService implements IQuestionService {
     private List<Question> questions;
+    private IQuestionDao questionDao;
 
     private Map<Integer, Double> result = new HashMap<>(5);
+
+    public QuestionService(IQuestionDao questionDao) {
+        this.questionDao = questionDao;
+    }
 
     @Override
     public List<Question> getQuestions() {
         if (questions == null)
-            try {
-                questions = loadQuestions();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            questions = questionDao.getQuestionList();
         return questions;
     }
 
@@ -47,18 +49,4 @@ public class QuestionService implements IQuestionService {
         return getQuestions().size();
     }
 
-    private List<Question> loadQuestions() throws IOException {
-        List<Question> result = new ArrayList<>();
-        CSVReader reader = new CSVReader(new FileReader("questions.csv"), ',', '"', 1);
-        String[] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
-            Question question = new Question();
-            question.setId(Integer.parseInt(nextLine[0]));
-            question.setText(nextLine[1]);
-            question.setAnswers(nextLine[2].split(":"));
-            question.setTrueAns(Util.StringToIntArray(nextLine[3], ":"));
-            result.add(question);
-        }
-        return result;
-    }
 }
