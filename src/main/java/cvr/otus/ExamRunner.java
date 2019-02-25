@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import static cvr.otus.utils.Say.message;
+import static cvr.otus.utils.Say.messageln;
 
 class ExamRunner {
     private Student student;
@@ -26,25 +27,25 @@ class ExamRunner {
     }
 
     private void printResult() {
-        message("Товарищ " + student.getName() + ",  Ваш результат:");
+        messageln("Товарищ " + student.getName() + ",  Ваш результат:");
         Map<Integer, Double> result = service.getResult();
-        message("№вопроса      Оценка");
-        message("--------      ------");
+        messageln("№вопроса      Оценка");
+        messageln("--------      ------");
         double res = 0.0;
         int size = result.size();
         for (int i = 0; i < size; i++) {
             Double dou = result.get(i);
-            message("  " + (i + 1) + "            " + dou);
+            messageln("  " + (i + 1) + "            " + dou);
             res += dou;
         }
-        message("--------      ------");
-        message(" ср. бал       " + res / size);
-        message("============================================");
+        messageln("--------      ------");
+        messageln(" ср. бал       " + res / size);
+        messageln("============================================");
     }
 
     private void examine() {
-        message("Здравствуйте, " + student.getName());
-        message("Если в вопросе несколько ответов, перечислите их через запятую");
+        messageln("Здравствуйте, " + student.getName());
+        messageln("Если в вопросе несколько ответов, перечислите их через запятую");
         service = context.getBean(QuestionService.class);
         for (int i = 0; i < service.size(); i++) {
             printQuestion(service.getQuestion(i));
@@ -54,18 +55,18 @@ class ExamRunner {
 
     private void answer(int i) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ваш ответ: ");
+        message("Ваш ответ: ");
         String ans = scanner.next();
         service.checkQuestion(i, ans);
     }
 
     private void printQuestion(Question question) {
-        message("============================================");
-        message("Вопрос № " + question.getId());
-        message(question.getText());
+        messageln("============================================");
+        messageln("Вопрос № " + question.getId());
+        messageln(question.getText());
         int count = 1;
         for (String s : question.getAnswers()) {
-            message(count++ + ")" + s);
+            messageln(count++ + ")" + s);
         }
 
     }
@@ -74,9 +75,9 @@ class ExamRunner {
         Scanner scanner = new Scanner(System.in);
         int count = 3;
         while (count-- > 0) {
-            System.out.print("Ваше имя: ");
+            message("Ваше имя: ");
             String name = scanner.next();
-            System.out.print("Пароль  : ");
+            message("Пароль  : ");
             String password = scanner.next();
 
             student = context.getBean(StudentService.class).login(name, password);
@@ -84,9 +85,9 @@ class ExamRunner {
                 return student;
             else {
                 if (count > 0)
-                    message("Попробуёте ещё раз. Осталось " + count + " попыток");
+                    messageln("Попробуёте ещё раз. Осталось " + count + " попыток");
                 else
-                    message("Попытки исчернаны, выход из программы");
+                    messageln("Попытки исчернаны, выход из программы");
             }
         }
         return student;
