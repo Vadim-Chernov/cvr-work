@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
+    public StudentDaoImpl() {
+        System.out.println("constructor  StudentDaoImpl");
+    }
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();

@@ -12,7 +12,6 @@ public class Main {
         messageln("Программа тестирования студентов");
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
         ExamRunner examRunner = new ExamRunner(context);
-//        examRunner.createFakes();
         examRunner.run();
 
     }

@@ -21,11 +21,6 @@ class ExamRunner {
         this.context = context;
     }
 
-    void createFakes() {
-        FakeData.createStudents();
-        FakeData.createQuestions();
-    }
-
     private void printResult() {
         messageln("Товарищ " + student.getName() + ",  Ваш результат:");
         Map<Integer, Double> result = service.getResult();

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionDaoImpl implements QuestionDao {
+    public QuestionDaoImpl() {
+        System.out.println("constructor  QuestionDaoImpl");
+
+    }
+
     @Override
     public List<Question> getQuestionList() {
         List<Question> questions = null;
