@@ -1,4 +1,4 @@
-package cvr.otus;
+package cvr.otus.fake;
 
 import java.io.File;
 import java.io.FileWriter;

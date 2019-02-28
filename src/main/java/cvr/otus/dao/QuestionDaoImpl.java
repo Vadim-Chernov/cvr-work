@@ -1,8 +1,8 @@
 package cvr.otus.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
-import cvr.otus.FakeData;
 import cvr.otus.domain.Question;
+import cvr.otus.fake.FakeData;
 import cvr.otus.utils.Util;
 
 import java.io.FileReader;

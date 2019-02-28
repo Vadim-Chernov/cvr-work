@@ -2,8 +2,10 @@ package cvr.otus;
 
 import cvr.otus.domain.Question;
 import cvr.otus.domain.Student;
+import cvr.otus.fake.FakeData;
 import cvr.otus.service.QuestionService;
 import cvr.otus.service.StudentService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Map;
@@ -15,15 +17,10 @@ import static cvr.otus.utils.Say.messageln;
 class ExamRunner {
     private Student student;
     private QuestionService service;
-    private ClassPathXmlApplicationContext context;
+    private AnnotationConfigApplicationContext context;
 
-    ExamRunner(ClassPathXmlApplicationContext context) {
+    ExamRunner(AnnotationConfigApplicationContext context) {
         this.context = context;
-    }
-
-    void createFakes() {
-        FakeData.createStudents();
-        FakeData.createQuestions();
     }
 
     private void printResult() {
