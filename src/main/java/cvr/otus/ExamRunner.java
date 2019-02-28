@@ -2,11 +2,9 @@ package cvr.otus;
 
 import cvr.otus.domain.Question;
 import cvr.otus.domain.Student;
-import cvr.otus.fake.FakeData;
 import cvr.otus.service.QuestionService;
 import cvr.otus.service.StudentService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -17,9 +15,9 @@ import static cvr.otus.utils.Say.messageln;
 class ExamRunner {
     private Student student;
     private QuestionService service;
-    private AnnotationConfigApplicationContext context;
+    private AbstractApplicationContext context;
 
-    ExamRunner(AnnotationConfigApplicationContext context) {
+    ExamRunner(AbstractApplicationContext context) {
         this.context = context;
     }
 
