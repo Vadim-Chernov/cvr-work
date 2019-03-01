@@ -29,8 +29,9 @@ public class ExamRunner {
         this.service = service;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    void createFakes() {
+        FakeData.createStudents();
+        FakeData.createQuestions();
     }
 
     private void printResult() {
