@@ -18,21 +18,19 @@ import static cvr.otus.utils.Say.messageln;
 public class ExamRunner {
     private Student student;
     private QuestionService service;
-//    private AbstractApplicationContext context;
-//
-//    ExamRunner(AbstractApplicationContext context) {
-//        this.context = context;
-//    }
 
     @Autowired
     public ExamRunner( QuestionService service) {
         this.service = service;
     }
 
-    void createFakes() {
-        FakeData.createStudents();
-        FakeData.createQuestions();
+    public void setStudent(Student student) {
+        this.student = student;
     }
+//    void createFakes() {
+//        FakeData.createStudents();
+//        FakeData.createQuestions();
+//    }
 
     private void printResult() {
         messageln("Товарищ " + student.getName() + ",  Ваш результат:");
