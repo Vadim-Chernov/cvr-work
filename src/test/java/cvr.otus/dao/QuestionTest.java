@@ -33,6 +33,8 @@ class QuestionTest {
         assertEquals(TEXT,question.getText());
     }
 
+
+
     @Test
     void getAnswers() {
         assertEquals(ENABLED_ANS,question.getAnswers());
