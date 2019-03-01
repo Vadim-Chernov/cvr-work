@@ -27,10 +27,6 @@ public class ExamRunner {
     public void setStudent(Student student) {
         this.student = student;
     }
-//    void createFakes() {
-//        FakeData.createStudents();
-//        FakeData.createQuestions();
-//    }
 
     private void printResult() {
         messageln("Товарищ " + student.getName() + ",  Ваш результат:");
@@ -52,7 +48,6 @@ public class ExamRunner {
     private void examine() {
         messageln("Здравствуйте, " + student.getName());
         messageln("Если в вопросе несколько ответов, перечислите их через запятую");
-//        service = context.getBean(QuestionService.class);
         for (int i = 0; i < service.size(); i++) {
             printQuestion(service.getQuestion(i));
             answer(i);
@@ -79,12 +74,7 @@ public class ExamRunner {
 
 
     public void run() {
-//        student = login();
-//        if (student == null) {
-//            return;
-//        }
         examine();
         printResult();
-
     }
 }
