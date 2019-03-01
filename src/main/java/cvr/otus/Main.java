@@ -13,19 +13,25 @@ import static cvr.otus.utils.Say.messageln;
 @ComponentScan
 public class Main {
 
-    public static void main(String[] args) {
+    private void run(){
+
         messageln("Программа тестирования студентов");
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
 
-
         LoginService loginService = new LoginServiceImpl(context);
         Student student = loginService.login();
-
 
         if(student!=null) {
             ExamRunner examRunner = context.getBean(ExamRunner.class);
             examRunner.setStudent(student);
             examRunner.run();
         }
+
+    }
+
+
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.run();
     }
 }
