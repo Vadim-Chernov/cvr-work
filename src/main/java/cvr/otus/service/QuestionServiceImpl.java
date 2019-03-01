@@ -3,10 +3,13 @@ package cvr.otus.service;
 import cvr.otus.dao.QuestionDao;
 import cvr.otus.domain.Question;
 import cvr.otus.utils.Util;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+@Service
 
 public class QuestionServiceImpl implements QuestionService {
     private List<Question> questions;

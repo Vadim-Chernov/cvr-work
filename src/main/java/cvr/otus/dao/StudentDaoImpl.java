@@ -2,14 +2,16 @@ package cvr.otus.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
 import cvr.otus.domain.Student;
-import cvr.otus.fake.FakeData;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class StudentDaoImpl implements StudentDao {
+
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();
@@ -30,9 +32,5 @@ public class StudentDaoImpl implements StudentDao {
             e.printStackTrace();
         }
         return students;
-    }
-
-    private void createFake() {
-        FakeData.createStudents();
     }
 }

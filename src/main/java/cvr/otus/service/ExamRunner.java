@@ -1,10 +1,12 @@
-package cvr.otus;
+package cvr.otus.service;
 
 import cvr.otus.domain.Question;
 import cvr.otus.domain.Student;
 import cvr.otus.service.QuestionService;
 import cvr.otus.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -12,13 +14,23 @@ import java.util.Scanner;
 import static cvr.otus.utils.Say.message;
 import static cvr.otus.utils.Say.messageln;
 
-class ExamRunner {
+@Service
+public class ExamRunner {
     private Student student;
     private QuestionService service;
-    private AbstractApplicationContext context;
+//    private AbstractApplicationContext context;
+//
+//    ExamRunner(AbstractApplicationContext context) {
+//        this.context = context;
+//    }
 
-    ExamRunner(AbstractApplicationContext context) {
-        this.context = context;
+    @Autowired
+    public ExamRunner( QuestionService service) {
+        this.service = service;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     private void printResult() {
@@ -41,7 +53,7 @@ class ExamRunner {
     private void examine() {
         messageln("Здравствуйте, " + student.getName());
         messageln("Если в вопросе несколько ответов, перечислите их через запятую");
-        service = context.getBean(QuestionService.class);
+//        service = context.getBean(QuestionService.class);
         for (int i = 0; i < service.size(); i++) {
             printQuestion(service.getQuestion(i));
             answer(i);
@@ -66,33 +78,12 @@ class ExamRunner {
 
     }
 
-    private Student login() {
-        Scanner scanner = new Scanner(System.in);
-        int count = 3;
-        while (count-- > 0) {
-            message("Ваше имя: ");
-            String name = scanner.next();
-            message("Пароль  : ");
-            String password = scanner.next();
 
-            student = context.getBean(StudentService.class).login(name, password);
-            if (student != null)
-                return student;
-            else {
-                if (count > 0)
-                    messageln("Попробуёте ещё раз. Осталось " + count + " попыток");
-                else
-                    messageln("Попытки исчернаны, выход из программы");
-            }
-        }
-        return student;
-    }
-
-    void run() {
-        student = login();
-        if (student == null) {
-            return;
-        }
+    public void run() {
+//        student = login();
+//        if (student == null) {
+//            return;
+//        }
         examine();
         printResult();
 
