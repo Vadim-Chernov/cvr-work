@@ -1,20 +1,37 @@
 package cvr.otus;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import cvr.otus.domain.Student;
+import cvr.otus.service.ExamRunner;
+import cvr.otus.service.LoginService;
+import cvr.otus.service.LoginServiceImpl;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import static cvr.otus.utils.Say.messageln;
 
+@ComponentScan
 public class Main {
 
+    private void run(){
 
-
-    public static void main(String[] args) {
         messageln("Программа тестирования студентов");
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-        ExamRunner examRunner = new ExamRunner(context);
-        examRunner.createFakes();
-        examRunner.run();
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+
+        LoginService loginService = new LoginServiceImpl(context);
+        Student student = loginService.login();
+
+        if(student!=null) {
+            ExamRunner examRunner = context.getBean(ExamRunner.class);
+            examRunner.setStudent(student);
+            examRunner.run();
+        }
 
     }
 
+
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.run();
+    }
 }

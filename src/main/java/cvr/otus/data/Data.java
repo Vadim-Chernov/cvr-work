@@ -1,12 +1,22 @@
-package cvr.otus;
+package cvr.otus.data;
+
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FakeData {
-    public static void createStudents() {
-        File file = new File("students.csv");
+@Service
+class Data {
+
+    Data(String students, String questions) {
+        createStudents(students);
+        createQuestions(questions);
+    }
+
+    private void createStudents(String students) {
+
+        File file = new File(students);
         if (!file.exists())
             try {
                 file.createNewFile();
@@ -26,8 +36,8 @@ public class FakeData {
 
     }
 
-    public static void createQuestions() {
-        File file = new File("questions.csv");
+    private void createQuestions(String questions) {
+        File file = new File(questions);
         if (!file.exists())
             try {
                 file.createNewFile();
@@ -35,7 +45,7 @@ public class FakeData {
                 String question = "id,text,answers,trueAns\n";
                 String answers;
                 writer.write(question);
-                question = "1,Выбирете допустимое объявление java,";
+                question = "1,Выбирете допустимые объявления java,";
                 answers = " int i=0;: int i=125;: int i=\"asd\";: Int i==125; : float r=125f;,2:1:5\n";
                 writer.write(question);
                 writer.write(answers);

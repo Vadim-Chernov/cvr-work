@@ -2,17 +2,23 @@ package cvr.otus.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
 import cvr.otus.domain.Student;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class StudentDaoImpl implements StudentDao {
+    @Value("${students}")
+    private String students;
+
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();
-        CSVReader reader = new CSVReader(new FileReader("students.csv"), ',', '"', 1);
+        CSVReader reader = new CSVReader(new FileReader(students), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null)
             reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2]));
