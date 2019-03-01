@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@PropertySource("classpath:file-path.properties")
+//@PropertySource("classpath:file-path.properties")
 public class QuestionDaoImpl implements QuestionDao {
 
-    private @Value("${questions}")
-    String csvFile;
+    @Value("${questions}")
+    private String csvFile;
 
     @Override
     public List<Question> getQuestionList() {

@@ -1,4 +1,4 @@
-package cvr.otus.dao;
+package cvr.otus.domain;
 
 import cvr.otus.domain.Question;
 import org.junit.jupiter.api.BeforeEach;
