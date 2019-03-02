@@ -17,7 +17,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     private Map<Integer, Double> result = new HashMap<>(5);
 
-    public QuestionServiceImpl(QuestionDao questionDao) {
+    QuestionServiceImpl(QuestionDao questionDao) {
         this.questionDao = questionDao;
     }
 
@@ -36,7 +36,9 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void checkQuestion(int num, String answer) {
-        double ret = Util.examineArrays(Util.StringToIntArray(answer, ","), getQuestion(num).getTrueAns());
+        int[] trueAns = getQuestion(num).getTrueAns();
+        int[] ints = Util.StringToIntArray(answer, ",");
+        double ret = Util.examineArrays(ints, trueAns);
         result.put(num, ret);
     }
 

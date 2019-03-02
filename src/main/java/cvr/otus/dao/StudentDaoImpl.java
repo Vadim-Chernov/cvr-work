@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 public class StudentDaoImpl implements StudentDao {
-    @Value("${students}")
-    private String students;
+    @Value("${csvFile}")
+    private String csvFile;
 
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();
-        CSVReader reader = new CSVReader(new FileReader(students), ',', '"', 1);
+        CSVReader reader = new CSVReader(new FileReader(csvFile), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null)
             reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2]));

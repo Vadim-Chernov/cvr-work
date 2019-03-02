@@ -1,40 +1,46 @@
 package cvr.otus.service;
 
 import cvr.otus.domain.Student;
-import org.springframework.context.support.AbstractApplicationContext;
+import cvr.otus.utils.PrintService;
 import org.springframework.stereotype.Service;
 
-import java.util.Scanner;
+import java.util.Iterator;
 
-import static cvr.otus.utils.Say.message;
-import static cvr.otus.utils.Say.messageln;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-    private Student student;
-    private AbstractApplicationContext context;
 
-    public LoginServiceImpl(AbstractApplicationContext context) {
-        this.context = context;
+    private Student student;
+    private StudentService service;
+    private PrintService ps;
+
+    public void setScanner(Iterator<String> scanner) {
+        this.scanner = scanner;
+    }
+
+    private Iterator<String> scanner;
+
+    public LoginServiceImpl(StudentService service,PrintService ps) {
+        this.service = service;
+        this.ps = ps;
     }
 
     public Student login() {
-        Scanner scanner = new Scanner(System.in);
         int count = 3;
         while (count-- > 0) {
-            message("Ваше имя: ");
+            ps.print("Ваше имя: ");
             String name = scanner.next();
-            message("Пароль  : ");
+            ps.print("Пароль  : ");
             String password = scanner.next();
 
-            student = context.getBean(StudentService.class).login(name, password);
+            student = service.login(name, password);
             if (student != null)
                 return student;
             else {
                 if (count > 0)
-                    messageln("Попробуёте ещё раз. Осталось " + count + " попыток");
+                    ps.println("Попробуёте ещё раз. Осталось " + count + " попыток");
                 else
-                    messageln("Попытки исчернаны, выход из программы");
+                    ps.println("Попытки исчернаны, выход из программы");
             }
         }
         return student;

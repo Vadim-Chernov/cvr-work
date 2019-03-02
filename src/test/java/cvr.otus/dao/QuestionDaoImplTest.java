@@ -10,28 +10,28 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QuestionDaoImplTest {
-    public static int COUNT = 5;
-    public static String TEXT = "вопрос №";
-    public static String ANSWER = "ответ №";
+    private static int COUNT = 5;
+    private static String TEXT = "вопрос №";
+    private static String ANSWER = "ответ №";
 
 
-    static List<Question>  questions = new ArrayList<>();
+    private static List<Question> questions = new ArrayList<>();
 
     public static List<Question> getQuestions() {
         return questions;
     }
 
-    public static void init(){
+    public static void init() {
         questions.clear();
         for (int i = 0; i < COUNT; i++) {
             Question question = new Question();
-            question.setId(i);
-            question.setText(TEXT + i);
+            question.setId(i + 1);
+            question.setText(TEXT + (i + 1));
             String[] enabledAnswers = new String[i + 1];
             int[] trueAns = new int[i + 1];
-            for (int j = 0; j < i; j++) {
-                enabledAnswers[j] = ANSWER + j;
-                trueAns[j] = j;
+            for (int j = 0; j <= i; j++) {
+                enabledAnswers[j] = ANSWER + (j + 1);
+                trueAns[j] = j + 1;
             }
             question.setAnswers(enabledAnswers);
             question.setTrueAns(trueAns);
@@ -54,13 +54,13 @@ public class QuestionDaoImplTest {
     @Test
     void getQuestionGetId() {
         for (int i = 0; i < COUNT; i++)
-            assertEquals(i, questions.get(i).getId());
+            assertEquals(i + 1, questions.get(i).getId());
     }
 
     @Test
     void getQuestionText() {
         for (int i = 0; i < COUNT; i++)
-            assertEquals(TEXT + i, questions.get(i).getText());
+            assertEquals(TEXT + (i + 1), questions.get(i).getText());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class QuestionDaoImplTest {
         for (int i = 0; i < COUNT; i++) {
             String[] answers = questions.get(i).getAnswers();
             for (int j = 0; j < i; j++) {
-                assertEquals(ANSWER + j, answers[j]);
+                assertEquals(ANSWER + (j + 1), answers[j]);
             }
         }
     }
@@ -78,7 +78,7 @@ public class QuestionDaoImplTest {
         for (int i = 0; i < COUNT; i++) {
             int[] trueAns = questions.get(i).getTrueAns();
             for (int j = 0; j < i; j++) {
-                assertEquals(j, trueAns[j]);
+                assertEquals(j+1, trueAns[j]);
             }
         }
     }
