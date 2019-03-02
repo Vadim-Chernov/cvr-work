@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@PropertySource("classpath:file-path.properties")
+
 public class QuestionDaoImpl implements QuestionDao {
 
     @Value("${questions}")

@@ -3,6 +3,7 @@ package cvr.otus.dao;
 import au.com.bytecode.opencsv.CSVReader;
 import cvr.otus.domain.Student;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@PropertySource("classpath:file-path.properties")
 public class StudentDaoImpl implements StudentDao {
-    @Value("${csvFile}")
+    @Value("${students}")
     private String csvFile;
 
 
