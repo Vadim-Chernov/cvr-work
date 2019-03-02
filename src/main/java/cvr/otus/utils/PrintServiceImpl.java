@@ -15,13 +15,13 @@ public class PrintServiceImpl implements PrintService {
 
     @Override
     public void println(String message) {
-        String msg = messageSource.getMessage("star", new String[]{message}, Locale.ENGLISH);
+        String msg = messageSource.getMessage("str", new String[]{message}, Locale.ENGLISH);
         System.out.println(msg);
     }
 
     @Override
     public void print(String message) {
-        String msg = messageSource.getMessage("star", new String[]{message}, Locale.ENGLISH);
+        String msg = messageSource.getMessage("str", new String[]{message}, Locale.ENGLISH);
         System.out.print(msg);
     }
 }
