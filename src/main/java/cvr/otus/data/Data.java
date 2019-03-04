@@ -19,6 +19,7 @@ class Data {
         File file = new File(students);
         if (!file.exists())
             try {
+                file.getParentFile().mkdirs();
                 file.createNewFile();
                 FileWriter writer = new FileWriter(file);
                 String student = "id,name,password\n";
@@ -40,6 +41,7 @@ class Data {
         File file = new File(questions);
         if (!file.exists())
             try {
+                file.getParentFile().mkdirs();
                 file.createNewFile();
                 FileWriter writer = new FileWriter(file);
                 String question = "id,text,answers,trueAns\n";
