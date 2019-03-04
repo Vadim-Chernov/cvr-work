@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 
-import static cvr.otus.GLB_CONST.*;
-
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -30,9 +28,9 @@ public class LoginServiceImpl implements LoginService {
     public Student login() {
         int count = 3;
         while (count-- > 0) {
-            ps.say(STUDENT_NAME);
+            ps.say("student.name");
             String name = scanner.next();
-            ps.say(STUDENT_PASSWORD);
+            ps.say("student.password");
             String password = scanner.next();
 
             student = service.login(name, password);
@@ -40,9 +38,9 @@ public class LoginServiceImpl implements LoginService {
                 return student;
             else {
                 if (count > 0)
-                    ps.sayln(TRY_AGAIN, new String[]{"" + count});
+                    ps.sayln("try.again", new String[]{"" + count});
                 else
-                    ps.sayln(ATTEMPTS_EXHAUSTED);
+                    ps.sayln("attempts.exhausted");
             }
         }
         return student;

@@ -7,7 +7,4 @@ public interface PrintService {
     void sayln(String message);
     void sayln(String key,String[] additional);
     void sayln(String key,String additional);
-//
-//    void println(String message);
-//    void print(String message);
 }
