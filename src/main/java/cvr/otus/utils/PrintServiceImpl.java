@@ -40,21 +40,18 @@ public class PrintServiceImpl implements PrintService {
     public void say(String key, String additional) {
         init();
         System.out.println(messageSource.getMessage(key, new String[]{additional}, locale));
-
     }
 
     @Override
     public void say(String key, String[] additional) {
         init();
         System.out.println(messageSource.getMessage(key, additional, locale));
-
     }
 
     @Override
     public void sayln(String message, String[] additional) {
         init();
         System.out.println(messageSource.getMessage(message, additional, locale));
-
     }
 
     @Override
@@ -63,7 +60,6 @@ public class PrintServiceImpl implements PrintService {
         String[] args = {additional};
         String message1 = messageSource.getMessage(key, args, locale);
         System.out.println(message1);
-
     }
 
     private void init() {
@@ -72,6 +68,5 @@ public class PrintServiceImpl implements PrintService {
                 String[] loc = language.split(",");
                 locale = new Locale(loc[0],loc[1]);
             }
-
     }
 }
