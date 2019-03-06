@@ -2,9 +2,14 @@ package cvr.otus.domain;
 
 //import cvr.otus.domain.Question;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Бессмысленный тест
+ * Тестируется Java set\get
+ */
+@DisplayName("QuestionTest - удалить тест")
 class QuestionTest {
 
     private final String TEXT = "Вопрос";

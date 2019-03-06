@@ -14,11 +14,17 @@ import java.util.List;
 
 @Service
 @PropertySource("classpath:file-path.properties")
-
 public class QuestionDaoImpl implements QuestionDao {
 
     @Value("${questions}")
     private String csvFile;
+
+    QuestionDaoImpl(String csvFile) {
+        this.csvFile = csvFile;
+    }
+
+    public QuestionDaoImpl() {
+    }
 
     @Override
     public List<Question> getQuestionList() {

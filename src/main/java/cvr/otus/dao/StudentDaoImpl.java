@@ -17,6 +17,12 @@ public class StudentDaoImpl implements StudentDao {
     @Value("${students}")
     private String csvFile;
 
+    public StudentDaoImpl() {
+    }
+
+    StudentDaoImpl(String csvFile) {
+        this.csvFile = csvFile;
+    }
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();

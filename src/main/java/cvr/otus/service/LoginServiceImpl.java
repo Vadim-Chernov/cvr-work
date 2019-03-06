@@ -5,6 +5,7 @@ import cvr.otus.utils.PrintService;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 @Service
@@ -14,15 +15,21 @@ public class LoginServiceImpl implements LoginService {
     private StudentService service;
     private PrintService ps;
 
-    public void setScanner(Iterator<String> scanner) {
-        this.scanner = scanner;
-    }
 
     private Iterator<String> scanner;
 
-    public LoginServiceImpl(StudentService service, PrintService ps) {
+    void setScanner(Iterator<String> scanner) {
+        this.scanner = scanner;
+    }
+
+    PrintService getPs() {
+        return ps;
+    }
+
+    public LoginServiceImpl(StudentService service, PrintService ps, Scanner scanner) {
         this.service = service;
         this.ps = ps;
+        this.scanner = scanner;
     }
 
     public Student login() {

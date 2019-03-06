@@ -14,23 +14,16 @@ import java.util.Map;
 public class ExamRunnerImpl implements ExamRunner {
     private Student student;
     private QuestionService service;
-
-
-
-    @Autowired
     private PrintService ps;
-
+    private Iterator<String> scanner;
 
     @Autowired
-    public ExamRunnerImpl(QuestionService service) {
+    public ExamRunnerImpl(QuestionService service,PrintService ps,Iterator<String> scanner) {
         this.service = service;
-    }
-    @Override
-    public void setScanner(Iterator<String> scanner) {
+        this.ps = ps;
         this.scanner = scanner;
     }
 
-    private Iterator<String> scanner;
 
     @Override
     public void setStudent(Student student) {
@@ -65,7 +58,6 @@ public class ExamRunnerImpl implements ExamRunner {
     }
 
     private void answer(int i) {
-//        Scanner scanner = new Scanner(System.in);
         ps.say("answer");
         String ans = scanner.next();
         service.checkQuestion(i, ans);
@@ -79,9 +71,7 @@ public class ExamRunnerImpl implements ExamRunner {
         for (String s : question.getAnswers()) {
             ps.sayln("str", count++ + ")" + s);
         }
-
     }
-
 
     @Override
     public void run() {

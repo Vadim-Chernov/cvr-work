@@ -1,5 +1,8 @@
 package cvr.otus.utils;
 
+import java.util.Iterator;
+import java.util.Scanner;
+
 public interface PrintService {
     void say(String message);
     void say(String key,String additional);
