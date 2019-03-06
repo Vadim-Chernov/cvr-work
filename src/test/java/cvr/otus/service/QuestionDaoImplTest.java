@@ -1,19 +1,28 @@
-package cvr.otus.dao;
+package cvr.otus.service;
 
 import cvr.otus.Main;
+import cvr.otus.dao.QuestionDao;
 import cvr.otus.domain.Question;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-@DisplayName("QuestionDaoImplTest + ApplicationContext context")
+
+@DisplayName("QuestionDaoImplTest + SpringExtension")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = Main.class)
 class QuestionDaoImplTest {
-    private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-    private QuestionDao questionDao = context.getBean(QuestionDao.class);
+
+    @Autowired
+    private QuestionDao questionDao;
 
     @Test
     void getQuestionList() {

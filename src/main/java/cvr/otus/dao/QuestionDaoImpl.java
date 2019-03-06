@@ -17,11 +17,9 @@ import java.util.List;
 @PropertySource("classpath:file-path.properties")
 public class QuestionDaoImpl implements QuestionDao {
 
-
     private String csvFile;
 
-//    @Autowired
-    QuestionDaoImpl(@Value("${questions}") String csvFile) {
+    public QuestionDaoImpl(@Value("${questions}") String csvFile) {
         this.csvFile = csvFile;
     }
 

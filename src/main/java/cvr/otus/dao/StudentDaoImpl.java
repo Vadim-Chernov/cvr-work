@@ -18,7 +18,7 @@ public class StudentDaoImpl implements StudentDao {
     private String csvFile;
 
 
-    StudentDaoImpl(@Value("${students}")String csvFile) {
+    public StudentDaoImpl(@Value("${students}")String csvFile) {
         this.csvFile = csvFile;
     }
 

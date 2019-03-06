@@ -1,5 +1,6 @@
-package cvr.otus.dao;
+package cvr.otus.service;
 
+import cvr.otus.dao.StudentDaoImpl;
 import cvr.otus.domain.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
