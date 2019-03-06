@@ -5,6 +5,7 @@ import cvr.otus.utils.PrintService;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 @Service
@@ -14,23 +15,29 @@ public class LoginServiceImpl implements LoginService {
     private StudentService service;
     private PrintService ps;
 
-    public void setScanner(Iterator<String> scanner) {
-        this.scanner = scanner;
-    }
 
     private Iterator<String> scanner;
 
-    public LoginServiceImpl(StudentService service,PrintService ps) {
+    void setScanner(Iterator<String> scanner) {
+        this.scanner = scanner;
+    }
+
+    PrintService getPs() {
+        return ps;
+    }
+
+    public LoginServiceImpl(StudentService service, PrintService ps, Scanner scanner) {
         this.service = service;
         this.ps = ps;
+        this.scanner = scanner;
     }
 
     public Student login() {
         int count = 3;
         while (count-- > 0) {
-            ps.print("Ваше имя: ");
+            ps.say("student.name");
             String name = scanner.next();
-            ps.print("Пароль  : ");
+            ps.say("student.password");
             String password = scanner.next();
 
             student = service.login(name, password);
@@ -38,9 +45,9 @@ public class LoginServiceImpl implements LoginService {
                 return student;
             else {
                 if (count > 0)
-                    ps.println("Попробуёте ещё раз. Осталось " + count + " попыток");
+                    ps.sayln("try.again", new String[]{"" + count});
                 else
-                    ps.println("Попытки исчернаны, выход из программы");
+                    ps.sayln("attempts.exhausted");
             }
         }
         return student;

@@ -1,10 +1,16 @@
 package cvr.otus.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Бессмысленный тест
+ * Тестируется Java set\get
+ */
+@DisplayName("StudentTest - удалить тест")
 class StudentTest {
     private Student student;
 

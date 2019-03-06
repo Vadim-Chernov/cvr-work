@@ -1,10 +1,9 @@
 package cvr.otus.service;
 
 import cvr.otus.dao.QuestionDao;
-import cvr.otus.dao.QuestionDaoImplTest;
 import cvr.otus.domain.Question;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.PropertySource;
 
@@ -13,11 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @PropertySource("classpath:file-path.properties")
+@DisplayName("QuestionServiceImplTest + mock")
 class QuestionServiceImplTest {
     private List<Question> questions;
     private Question question;
@@ -25,10 +25,12 @@ class QuestionServiceImplTest {
     private QuestionDao questionDao = mock(QuestionDao.class);
     private QuestionService service;
 
+    private Double delta =0.00001d;
+
     @BeforeEach
     void setUp() {
-        QuestionDaoImplTest.init();
-        questions = QuestionDaoImplTest.getQuestions();
+        FakeData data = new FakeData();
+        questions = data.generate();
         question = questions.get(questNum);
         when(questionDao.getQuestionList()).thenReturn(questions);
         service = new QuestionServiceImpl(questionDao);
@@ -56,7 +58,7 @@ class QuestionServiceImplTest {
         Set<Integer> integers = result.keySet();
         for (Integer integer : integers) {
             Double aDouble = result.get(integer);
-            assertEquals(5, aDouble, 0.0001);
+            assertEquals(5, aDouble, delta);
         }
     }
 
@@ -71,7 +73,7 @@ class QuestionServiceImplTest {
         Set<Integer> integers = result.keySet();
         for (Integer integer : integers) {
             Double aDouble = result.get(integer);
-            assertEquals(ex[integer], aDouble, 0.0001);
+            assertEquals(ex[integer], aDouble, delta);
         }
     }
 
@@ -84,7 +86,7 @@ class QuestionServiceImplTest {
         service.checkQuestion(3, "1,2,3");
         service.checkQuestion(4, "1,2,3");
         double sum = Arrays.stream(ex).mapToDouble(Double::doubleValue).sum();
-        assertEquals(14.25,sum,0.0001d);
+        assertEquals(14.25,sum,delta);
     }
 
     @Test
