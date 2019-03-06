@@ -29,7 +29,6 @@ class QuestionServiceImplTest {
 
     @BeforeEach
     void setUp() {
-//        QuestionDaoImplTest.init();
         FakeData data = new FakeData();
         questions = data.generate();
         question = questions.get(questNum);

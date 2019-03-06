@@ -49,8 +49,4 @@ public class PrintServiceConfig {
         return System.out::print;
     }
 
-//    @Bean
-//    public Consumer<String> println() {
-//        return System.out::println;
-//    }
 }
