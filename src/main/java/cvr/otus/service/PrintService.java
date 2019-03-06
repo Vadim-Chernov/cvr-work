@@ -1,4 +1,4 @@
-package cvr.otus.utils;
+package cvr.otus.service;
 
 import java.util.Iterator;
 import java.util.Scanner;
@@ -10,4 +10,5 @@ public interface PrintService {
     void sayln(String message);
     void sayln(String key,String[] additional);
     void sayln(String key,String additional);
+    String next();
 }

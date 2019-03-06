@@ -1,23 +1,33 @@
-package cvr.otus.utils;
+package cvr.otus.service;
 
 import cvr.otus.Main;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 @DisplayName("PrintServiceImplTest + ApplicationContext")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = Main.class)
 class PrintServiceImplTest {
-    private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-
-    private PrintServiceImpl test = context.getBean(PrintServiceImpl.class);
+//    @Mock
+    @Autowired
+    private PrintServiceImpl test;
     private String printStr = "";
 
     @BeforeEach
     void setUp() {
-        test.setPrint(s -> printStr += s);
+        test.setPrinter(s -> printStr += s);
     }
 
     @Test
@@ -54,5 +64,15 @@ class PrintServiceImplTest {
     void sayln2() {
         test.sayln("str", new String[]{"Hello"});
         assertEquals("Hello\n", printStr);
+    }
+
+    @Test
+    void next() {
+        List<String> list = new ArrayList<>(2);
+        list.add("1111111111");
+        list.add("2222222222");
+        test.setScanner(list.iterator());
+        assertEquals("1111111111", test.next());
+        assertEquals("2222222222", test.next());
     }
 }

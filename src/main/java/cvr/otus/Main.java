@@ -3,10 +3,9 @@ package cvr.otus;
 import cvr.otus.domain.Student;
 import cvr.otus.service.ExamRunner;
 import cvr.otus.service.LoginService;
-import cvr.otus.utils.PrintService;
+import cvr.otus.service.PrintService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 
 @ComponentScan
 //@PropertySource("classpath:file-path.properties")

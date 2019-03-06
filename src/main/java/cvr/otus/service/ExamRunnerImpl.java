@@ -2,11 +2,9 @@ package cvr.otus.service;
 
 import cvr.otus.domain.Question;
 import cvr.otus.domain.Student;
-import cvr.otus.utils.PrintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -15,13 +13,13 @@ public class ExamRunnerImpl implements ExamRunner {
     private Student student;
     private QuestionService service;
     private PrintService ps;
-    private Iterator<String> scanner;
+//    private Iterator<String> scanner;
 
     @Autowired
-    public ExamRunnerImpl(QuestionService service,PrintService ps,Iterator<String> scanner) {
+    public ExamRunnerImpl(QuestionService service,PrintService ps) {
         this.service = service;
         this.ps = ps;
-        this.scanner = scanner;
+//        this.scanner = scanner;
     }
 
 
@@ -59,7 +57,7 @@ public class ExamRunnerImpl implements ExamRunner {
 
     private void answer(int i) {
         ps.say("answer");
-        String ans = scanner.next();
+        String ans = ps.next();
         service.checkQuestion(i, ans);
     }
 

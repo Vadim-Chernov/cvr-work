@@ -65,10 +65,10 @@ class QuestionServiceImplTest {
     @Test
 //    @Disabled
     void checkQuestionNotTrue() {
-        Double[] ex = {0d,2.5d,5d};
+        Double[] ex = {0d,2.5d,3.75d};
         service.checkQuestion(0, "2");
         service.checkQuestion(1, "1,3");
-        service.checkQuestion(2, "1,2,3");
+        service.checkQuestion(2, "1,2,3,4");
         Map<Integer, Double> result = service.getResult();
         Set<Integer> integers = result.keySet();
         for (Integer integer : integers) {

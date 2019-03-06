@@ -8,17 +8,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-import java.util.Iterator;
 import java.util.Locale;
-import java.util.Scanner;
-import java.util.function.Consumer;
 
 @Configuration
 @PropertySource("classpath:file-path.properties")
 public class PrintServiceConfig {
-    @Value("${language}")
-    private String language;
-
 
     @Bean
     public MessageSource messageSource() {
@@ -28,10 +22,6 @@ public class PrintServiceConfig {
         return ms;
     }
 
-    @Bean
-    public Iterator<String> scanner() {
-        return new Scanner(System.in);
-    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
@@ -39,14 +29,8 @@ public class PrintServiceConfig {
     }
 
     @Bean
-    public Locale locale() {
+    public Locale locale(@Value("${language}") String language                         ) {
         String[] split = language.split(",");
         return new Locale(split[0], split[1]);
     }
-
-    @Bean
-    public Consumer<String> print() {
-        return System.out::print;
-    }
-
 }

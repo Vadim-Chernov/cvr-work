@@ -14,13 +14,11 @@ import java.util.List;
 @Service
 @PropertySource("classpath:file-path.properties")
 public class StudentDaoImpl implements StudentDao {
-    @Value("${students}")
+
     private String csvFile;
 
-    public StudentDaoImpl() {
-    }
 
-    StudentDaoImpl(String csvFile) {
+    StudentDaoImpl(@Value("${students}")String csvFile) {
         this.csvFile = csvFile;
     }
 

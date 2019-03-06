@@ -3,6 +3,7 @@ package cvr.otus.dao;
 import au.com.bytecode.opencsv.CSVReader;
 import cvr.otus.domain.Question;
 import cvr.otus.utils.Util;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,12 @@ import java.util.List;
 @PropertySource("classpath:file-path.properties")
 public class QuestionDaoImpl implements QuestionDao {
 
-    @Value("${questions}")
+
     private String csvFile;
 
-    QuestionDaoImpl(String csvFile) {
+//    @Autowired
+    QuestionDaoImpl(@Value("${questions}") String csvFile) {
         this.csvFile = csvFile;
-    }
-
-    public QuestionDaoImpl() {
     }
 
     @Override
