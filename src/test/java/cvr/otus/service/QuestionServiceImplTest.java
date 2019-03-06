@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@PropertySource("classpath:file-path.properties")
+//@PropertySource("classpath:file-path.properties")
 @DisplayName("QuestionServiceImplTest + mock")
 class QuestionServiceImplTest {
     private List<Question> questions;
