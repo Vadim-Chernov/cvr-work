@@ -6,7 +6,9 @@ import cvr.otus.service.LoginService;
 import cvr.otus.service.PrintService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+@EnableAspectJAutoProxy
 @ComponentScan
 //@PropertySource("classpath:file-path.properties")
 public class Main {
@@ -22,8 +24,8 @@ public class Main {
 
         if (student != null) {
             ExamRunner examRunner = context.getBean(ExamRunner.class);
-            examRunner.setStudent(student);
-            examRunner.run();
+//            examRunner.setStudent(student);
+            examRunner.run(student);
         }
     }
 

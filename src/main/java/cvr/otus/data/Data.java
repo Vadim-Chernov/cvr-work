@@ -22,13 +22,13 @@ class Data {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
                 FileWriter writer = new FileWriter(file);
-                String student = "id,name,password\n";
+                String student = "id,name,password,role\n";
                 writer.write(student);
-                student = "1,Ivanov,1\n";
+                student = "1,Ivanov,1,student\n";
                 writer.write(student);
-                student = "2,petrov,22\n";
+                student = "2,petrov,22,student\n";
                 writer.write(student);
-                student = "3,sidorov,333\n";
+                student = "3,sidorov,333,aspirant\n";
                 writer.write(student);
                 writer.close();
             } catch (IOException e) {

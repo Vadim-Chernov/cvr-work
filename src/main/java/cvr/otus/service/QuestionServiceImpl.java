@@ -35,11 +35,12 @@ public class QuestionServiceImpl implements QuestionService {
 
 
     @Override
-    public void checkQuestion(int num, String answer) {
+    public Double checkQuestion(int num, String answer) {
         int[] trueAns = getQuestion(num).getTrueAns();
         int[] ints = Util.StringToIntArray(answer, ",");
         double ret = Util.examineArrays(ints, trueAns);
         result.put(num, ret);
+        return ret;
     }
 
     @Override

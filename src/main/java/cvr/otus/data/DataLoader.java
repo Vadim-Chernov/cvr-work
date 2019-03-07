@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:file-path.properties")
 public class DataLoader {
 
-    private String questions;
+    private final String questions;
 
-    private String students;
+    private final String students;
 
     public DataLoader( @Value("${questions}") String questions, @Value("${students}")String students) {
         this.questions = questions;
@@ -21,7 +21,6 @@ public class DataLoader {
 
     @Bean
     Data data(){
-        Data data = new Data(students, questions);
-        return data;
+        return new Data(students, questions);
     }
 }

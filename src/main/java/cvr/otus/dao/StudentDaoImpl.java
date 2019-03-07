@@ -15,7 +15,7 @@ import java.util.List;
 @PropertySource("classpath:file-path.properties")
 public class StudentDaoImpl implements StudentDao {
 
-    private String csvFile;
+    private final String csvFile;
 
 
     public StudentDaoImpl(@Value("${students}")String csvFile) {
@@ -27,7 +27,7 @@ public class StudentDaoImpl implements StudentDao {
         CSVReader reader = new CSVReader(new FileReader(csvFile), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null)
-            reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2]));
+            reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2],nextLine[3]));
 
         return reslt;
     }

@@ -19,8 +19,8 @@ public class PrintServiceImpl implements PrintService {
 
     private Iterator<String> scanner;
 
-    private MessageSource messageSource;
-    private Locale locale;
+    private final MessageSource messageSource;
+    private final Locale locale;
 
     void setPrinter(Consumer<String> printer) {
         this.printer = printer;
@@ -34,8 +34,8 @@ public class PrintServiceImpl implements PrintService {
     public PrintServiceImpl(MessageSource messageSource, Locale locale) {
         this.messageSource = messageSource;
         this.locale = locale;
-        this.scanner=new Scanner( System.in);
-        this.printer =System.out::print;
+        this.scanner = new Scanner(System.in);
+        this.printer = System.out::print;
     }
 
     @Override
