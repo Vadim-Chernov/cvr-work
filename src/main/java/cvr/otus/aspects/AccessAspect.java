@@ -17,18 +17,15 @@ public class AccessAspect {
 
     @Around(value = "execution(* cvr.otus.service.ExamRunner.run(.. )) && args(student)")
     public Exception around(ProceedingJoinPoint joinPoint, Student student) {
-        String params = Arrays.toString(joinPoint.getArgs());
-        String name = joinPoint.getSignature().getName();
-        Object proceed;
         String role = student.getRole();
-        if (!"student".equals( role )){
-            proceed = "Доступ пользователю с ролью[" + role+"] запрещен";
+        if (!"student".equals(role)) {
+            Object proceed = "Доступ пользователю [" + student.getName() + "] с ролью[" + role + "] запрещен";
 
             System.err.println(proceed);
             return new Exception(proceed.toString());
         }
         try {
-            proceed = joinPoint.proceed(joinPoint.getArgs());
+            joinPoint.proceed(joinPoint.getArgs());
         } catch (Throwable err) {
             err.printStackTrace();
         }
