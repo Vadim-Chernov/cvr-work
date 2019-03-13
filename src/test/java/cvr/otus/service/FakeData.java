@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class FakeData {
-    private static int COUNT = 5;
-    private static String TEXT = "вопрос №";
-    private static String ANSWER = "ответ №";
+    private static final int COUNT = 5;
+    private static final String TEXT = "вопрос №";
+    private static final String ANSWER = "ответ №";
 
     List<Question> generate() {
         List<Question> questions = new ArrayList<>(5);

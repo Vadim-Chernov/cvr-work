@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.apache.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.Date;
 
 @Aspect
 @Component
@@ -21,7 +22,7 @@ public class LoggerAspect {
     private final static Logger LOGGER = Logger.getLogger(LoggerAspect.class);
 
     public LoggerAspect() {
-        log(" ================== ");
+        log(" ****************** " + new Date());
         log("|Start LoggerAspect|");
         log(" ================== ");
     }
