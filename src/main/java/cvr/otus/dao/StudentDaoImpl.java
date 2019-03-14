@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@PropertySource("classpath:file-path.properties")
+@PropertySource("classpath:application.yml")
 public class StudentDaoImpl implements StudentDao {
 
     private final String csvFile;

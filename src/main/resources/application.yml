@@ -1,0 +1,4 @@
+questions: ./data/questions.csv
+students: ./data/students.csv
+
+language: ru,RU

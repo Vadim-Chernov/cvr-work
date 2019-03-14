@@ -11,7 +11,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import java.util.Locale;
 
 @Configuration
-@PropertySource("classpath:file-path.properties")
+@PropertySource("classpath:application.yml")
 public class PrintServiceConfig {
 
     @Bean

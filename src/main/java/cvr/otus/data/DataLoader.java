@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@PropertySource("classpath:file-path.properties")
+@PropertySource("classpath:application.yml")
 public class DataLoader {
 
     private final String questions;
