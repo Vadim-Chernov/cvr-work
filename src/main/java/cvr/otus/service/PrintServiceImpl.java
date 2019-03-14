@@ -2,6 +2,7 @@ package cvr.otus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -9,8 +10,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-@Service
-
+@Component
 public class PrintServiceImpl implements PrintService {
 
     private static final String EOL = "\n";

@@ -4,35 +4,41 @@ import cvr.otus.domain.Student;
 import cvr.otus.service.ExamRunner;
 import cvr.otus.service.LoginService;
 import cvr.otus.service.PrintService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
-//@ComponentScan
 @SpringBootApplication
-//@PropertySource("classpath:file-path.properties")
-public class Main {
+public class Main implements CommandLineRunner {
+    @Autowired
+    private PrintService ps;
 
-    private void run() {
+    @Autowired
+    private LoginService loginService;
 
-        AnnotationConfigApplicationContext  context = new AnnotationConfigApplicationContext(Main.class);
-        PrintService  ps = context.getBean(PrintService.class);
+    @Autowired
+    private ExamRunner examRunner;
+
+
+
+    @Override
+    public void run(String... args) throws Exception {
         ps.sayln("program.caption");
-
-        LoginService loginService = context.getBean(LoginService.class);
         Student student = loginService.login();
-
-        if (student != null) {
-            ExamRunner examRunner = context.getBean(ExamRunner.class);
-//            examRunner.setStudent(student);
+        if (student != null)
             examRunner.run(student);
-        }
     }
 
     public static void main(String[] args) {
-        Main m = new Main();
-        m.run();
+        SpringApplication application = new SpringApplication(Main.class);
+        application.run(args);
     }
+
 }

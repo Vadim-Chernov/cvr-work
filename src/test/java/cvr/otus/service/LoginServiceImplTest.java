@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoginServiceImplTest {
     @Autowired
     private LoginServiceImpl test;
+
     private ArrayList<String> words = new ArrayList<>();
     private String printStr = "";
     private PrintServiceImpl printService;

@@ -1,10 +1,11 @@
 package cvr.otus.service;
 
 import cvr.otus.domain.Student;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
-@Service
+@Component
 public class LoginServiceImpl implements LoginService {
 
     private final StudentService studentService;
