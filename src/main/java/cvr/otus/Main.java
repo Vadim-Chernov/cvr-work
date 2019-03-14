@@ -4,12 +4,14 @@ import cvr.otus.domain.Student;
 import cvr.otus.service.ExamRunner;
 import cvr.otus.service.LoginService;
 import cvr.otus.service.PrintService;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
-@ComponentScan
+//@ComponentScan
+@SpringBootApplication
 //@PropertySource("classpath:file-path.properties")
 public class Main {
 

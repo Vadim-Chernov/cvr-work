@@ -9,11 +9,19 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Date;
 
 @Aspect
 @Component
 @Order(0)
 public class AccessAspect {
+
+    public AccessAspect() {
+        System.err.println(" ****************** " + new Date());
+        System.err.println("|Start LoggerAspect|");
+        System.err.println(" ================== ");
+
+    }
 
     @Around(value = "execution(* cvr.otus.service.ExamRunner.run(.. )) && args(student)")
     public Exception around(ProceedingJoinPoint joinPoint, Student student) {
