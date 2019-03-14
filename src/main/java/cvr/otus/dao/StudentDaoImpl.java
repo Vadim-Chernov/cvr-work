@@ -12,18 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@PropertySource("classpath:file-path.properties")
+@PropertySource("classpath:application.yml")
 public class StudentDaoImpl implements StudentDao {
-    @Value("${students}")
-    private String csvFile;
 
+    private final String csvFile;
+
+
+    public StudentDaoImpl(@Value("${students}")String csvFile) {
+        this.csvFile = csvFile;
+    }
 
     private List<Student> loadStudents() throws IOException {
         List<Student> reslt = new ArrayList<>();
         CSVReader reader = new CSVReader(new FileReader(csvFile), ',', '"', 1);
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null)
-            reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2]));
+            reslt.add(new Student(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2],nextLine[3]));
 
         return reslt;
     }

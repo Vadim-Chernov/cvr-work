@@ -1,20 +1,26 @@
 package cvr.otus.data;
 
-import cvr.otus.data.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@PropertySource("classpath:application.yml")
 public class DataLoader {
-    @Value("${questions}")
-    private String questions;
-    @Value("${students}")
-    private String students;
+
+    private final String questions;
+
+    private final String students;
+
+    public DataLoader( @Value("${questions}") String questions, @Value("${students}")String students) {
+        this.questions = questions;
+        this.students = students;
+    }
+
     @Bean
     Data data(){
-        Data data = new Data(students, questions);
-        return data;
+        return new Data(students, questions);
     }
 }

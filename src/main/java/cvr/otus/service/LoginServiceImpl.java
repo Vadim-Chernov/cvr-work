@@ -1,49 +1,45 @@
 package cvr.otus.service;
 
 import cvr.otus.domain.Student;
-import cvr.otus.utils.PrintService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 
-
-@Service
+@Component
 public class LoginServiceImpl implements LoginService {
 
-    private Student student;
-    private StudentService service;
-    private PrintService ps;
+    private final StudentService studentService;
+    private final PrintService printService;
 
-    public void setScanner(Iterator<String> scanner) {
-        this.scanner = scanner;
+    PrintService getPrintService() {
+        return printService;
     }
 
-    private Iterator<String> scanner;
-
-    public LoginServiceImpl(StudentService service,PrintService ps) {
-        this.service = service;
-        this.ps = ps;
+    public LoginServiceImpl(StudentService service, PrintService printService) {
+        this.studentService = service;
+        this.printService = printService;
     }
 
     public Student login() {
+        Student student;
         int count = 3;
         while (count-- > 0) {
-            ps.print("Ваше имя: ");
-            String name = scanner.next();
-            ps.print("Пароль  : ");
-            String password = scanner.next();
+            printService.say("student.name");
+            String name = printService.next();
+            printService.say("student.password");
+            String password = printService.next();
 
-            student = service.login(name, password);
+            student = studentService.login(name, password);
             if (student != null)
                 return student;
             else {
                 if (count > 0)
-                    ps.println("Попробуёте ещё раз. Осталось " + count + " попыток");
+                    printService.sayln("try.again", new String[]{"" + count});
                 else
-                    ps.println("Попытки исчернаны, выход из программы");
+                    printService.sayln("attempts.exhausted");
             }
         }
-        return student;
+        return null;
     }
 
 }

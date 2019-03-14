@@ -3,46 +3,42 @@ package cvr.otus;
 import cvr.otus.domain.Student;
 import cvr.otus.service.ExamRunner;
 import cvr.otus.service.LoginService;
-import cvr.otus.service.LoginServiceImpl;
-import cvr.otus.service.StudentService;
-import cvr.otus.utils.PrintService;
-import cvr.otus.utils.PrintServiceImpl;
+import cvr.otus.service.PrintService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.AbstractApplicationContext;
-import java.util.Scanner;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-@ComponentScan
-@PropertySource("classpath:file-path.properties")
-public class Main {
+@EnableAspectJAutoProxy
+@SpringBootApplication
+public class Main implements CommandLineRunner {
+    @Autowired
+    private PrintService ps;
 
+    @Autowired
+    private LoginService loginService;
 
-    private void run() {
-
-        AbstractApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-
-        PrintService ps = context.getBean( PrintServiceImpl.class);
-        ps.println("Программа тестирования студентов");
+    @Autowired
+    private ExamRunner examRunner;
 
 
-        StudentService studentService = context.getBean(StudentService.class);
-        LoginService loginService = new LoginServiceImpl(studentService,ps);
 
-        loginService.setScanner(new Scanner(System.in));
+    @Override
+    public void run(String... args) throws Exception {
+        ps.sayln("program.caption");
         Student student = loginService.login();
-
-        if (student != null) {
-            ExamRunner examRunner = context.getBean(ExamRunner.class);
-            examRunner.setStudent(student);
-            examRunner.run();
-        }
-
+        if (student != null)
+            examRunner.run(student);
     }
-
 
     public static void main(String[] args) {
-        Main m = new Main();
-        m.run();
+        SpringApplication application = new SpringApplication(Main.class);
+        application.run(args);
     }
+
 }
