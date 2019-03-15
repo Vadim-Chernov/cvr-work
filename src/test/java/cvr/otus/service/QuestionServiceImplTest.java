@@ -5,6 +5,7 @@ import cvr.otus.domain.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import static org.mockito.Mockito.when;
 
 //@PropertySource("classpath:file-path.properties")
 @DisplayName("QuestionServiceImplTest + mock")
+@SpringBootTest
 class QuestionServiceImplTest {
     private List<Question> questions;
     private Question question;

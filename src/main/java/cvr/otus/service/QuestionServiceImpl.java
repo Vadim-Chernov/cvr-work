@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class QuestionServiceImpl implements QuestionService {
     private List<Question> questions;
-    private QuestionDao questionDao;
+    private final QuestionDao questionDao;
 
     private Map<Integer, Double> result = new HashMap<>(5);
 
