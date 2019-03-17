@@ -8,3 +8,8 @@ appl:
 
 locale:
   language: ru,RU
+
+spring:
+  shell:
+    interactive:
+      enabled: false
