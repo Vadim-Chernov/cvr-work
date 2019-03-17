@@ -29,13 +29,13 @@ class PrintServiceImplTest {
     @Test
     void say() {
         test.say("test");
-        assertEquals("тестовая строка", printStr);
+        assertEquals("russian", printStr);
     }
 
     @Test
     void sayln() {
         test.sayln("test");
-        assertEquals("тестовая строка\n", printStr);
+        assertEquals("russian\n", printStr);
     }
 
     @Test

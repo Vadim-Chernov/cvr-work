@@ -5,9 +5,6 @@ import cvr.otus.domain.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,15 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-//@PropertySource("classpath:file-path.properties")
 @DisplayName("QuestionServiceImplTest + mock")
-@SpringBootTest
 class QuestionServiceImplTest {
     private List<Question> questions;
     private Question question;
     private int questNum = 3;
     private QuestionDao questionDao = mock(QuestionDao.class);
-    private QuestionService service;
+    private QuestionService service = mock(QuestionService.class);;
 
     private Double delta =0.00001d;
 
@@ -35,23 +30,19 @@ class QuestionServiceImplTest {
         questions = data.generate();
         question = questions.get(questNum);
         when(questionDao.getQuestionList()).thenReturn(questions);
-        service = new QuestionServiceImpl(questionDao);
     }
 
     @Test
-//    @Disabled
     void getQuestions() {
         assertEquals(5, questions.size());
     }
 
     @Test
-//    @Disabled
     void getQuestion() {
         assertEquals(4, question.getId());
     }
 
     @Test
-//    @Disabled
     void checkQuestionTrue() {
         service.checkQuestion(0, "1");
         service.checkQuestion(1, "1,2");
@@ -65,7 +56,6 @@ class QuestionServiceImplTest {
     }
 
     @Test
-//    @Disabled
     void checkQuestionNotTrue() {
         Double[] ex = {0d,2.5d,3.75d};
         service.checkQuestion(0, "2");

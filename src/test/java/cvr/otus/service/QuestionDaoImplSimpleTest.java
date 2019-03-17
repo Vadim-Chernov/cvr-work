@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Обчыный юнит-тест. Контекст spring не поднимается
 @DisplayName("QuestionDaoImplSimpleTest ")
-//@ExtendWith(MockitoExtension.class)
 class QuestionDaoImplSimpleTest {
     private QuestionDaoImpl questionDao;
 

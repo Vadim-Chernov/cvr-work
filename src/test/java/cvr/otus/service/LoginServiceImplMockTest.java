@@ -7,52 +7,45 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 
-@DisplayName("LoginServiceImplTest + SpringExtension")
+@DisplayName("LoginServiceImplTest + Mock")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 
-class LoginServiceImplTest {
+class LoginServiceImplMockTest {
     @Autowired
     private LoginServiceImpl loginService;
 
     private ArrayList<String> words = new ArrayList<>();
     private String printStr = "";
+
+    @MockBean
     private PrintServiceImpl printService;
 
-
-    @BeforeEach
-    void setUp() {
-        printStr = "";
-        printService = (PrintServiceImpl) loginService.getPrintService();
-        printService.setPrinter(s -> printStr += s);
-    }
-
     @Test
+    @DisplayName("Login попытка входа с верной учеткой ")
     void login() {
-        words.add("Ivanov");
-        words.add("1");
-        printService.setScanner(words.iterator());
+        given(printService.next()).willReturn("Ivanov").willReturn("1");
         Student student = loginService.login();
         assertEquals("Ivanov", student.getName());
     }
 
     @Test
+    @DisplayName("Login 3 попытки входа с неверной учеткой ")
     void loginBadly() {
-        words.add("Ivanov");
-        words.add("2");
-        words.add("Ivanov");
-        words.add("2");
-        words.add("Ivanov");
-        words.add("2");
+        given(printService.next())
+                .willReturn("Ivanov").willReturn("2")
+                .willReturn("Ivanov").willReturn("2")
+                .willReturn("Ivanov").willReturn("2");
         printService.setScanner(words.iterator());
         Student student = loginService.login();
         assertNull(student);
-        assertTrue(printStr.contains("выход"));
     }
 }

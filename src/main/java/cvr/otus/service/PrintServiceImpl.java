@@ -15,9 +15,7 @@ import java.util.function.Consumer;
 public class PrintServiceImpl implements PrintService {
 
     private static final String EOL = "\n";
-
     private Consumer<String> printer;
-
     private Iterator<String> scanner;
 
     private final MessageSource messageSource;

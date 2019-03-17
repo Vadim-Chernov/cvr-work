@@ -49,14 +49,14 @@ public class ExamRunnerImpl implements ExamRunner {
     }
 
     private void answer(int i) {
-        printService.say("answer");
+        printService.say("student.answer");
         String ans = printService.next();
         questionService.checkQuestion(i, ans);
     }
 
     private void printQuestion(Question question) {
         printService.sayln("str", "============================================");
-        printService.sayln("question", "" + question.getId());
+        printService.sayln("question.number", "" + question.getId());
         printService.sayln("str", question.getText());
         int count = 1;
         for (String s : question.getAnswers()) {
