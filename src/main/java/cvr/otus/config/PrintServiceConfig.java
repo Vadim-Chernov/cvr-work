@@ -28,9 +28,9 @@ public class PrintServiceConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean
-    public Locale locale(@Value("${language}") String language                         ) {
-        String[] split = language.split(",");
-        return new Locale(split[0], split[1]);
-    }
+//    @Bean
+//    public Locale locale(@Value("${language}") String language                         ) {
+//        String[] split = language.split(",");
+//        return new Locale(split[0], split[1]);
+//    }
 }

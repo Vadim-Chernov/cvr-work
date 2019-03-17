@@ -27,10 +27,10 @@ public class AccessAspect {
     public Exception around(ProceedingJoinPoint joinPoint, Student student) {
         String role = student.getRole();
         if (!"student".equals(role)) {
-            Object proceed = "Доступ пользователю [" + student.getName() + "] с ролью[" + role + "] запрещен";
+            String message = "Доступ пользователю [" + student.getName() + "] с ролью[" + role + "] запрещен";
 
-            System.err.println(proceed);
-            return new Exception(proceed.toString());
+            System.err.println(message);
+            return new Exception(message);
         }
         try {
             joinPoint.proceed(joinPoint.getArgs());

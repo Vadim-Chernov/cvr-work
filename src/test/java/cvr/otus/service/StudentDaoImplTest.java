@@ -3,6 +3,7 @@ package cvr.otus.service;
 import cvr.otus.Main;
 import cvr.otus.dao.StudentDao;
 import cvr.otus.domain.Student;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("StudentDaoImplTest + SpringExtension")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Main.class)
-
+@Disabled
 class StudentDaoImplTest {
 
     @Autowired

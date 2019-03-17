@@ -16,29 +16,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
 @SpringBootApplication
-public class Main implements CommandLineRunner {
-    @Autowired
-    private PrintService ps;
 
-    @Autowired
-    private LoginService loginService;
-
-    @Autowired
-    private ExamRunner examRunner;
-
-
-
-    @Override
-    public void run(String... args) throws Exception {
-        ps.sayln("program.caption");
-        Student student = loginService.login();
-        if (student != null)
-            examRunner.run(student);
-    }
-
+public class Main{
     public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(Main.class);
-        application.run(args);
+        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
+        Runner runner = context.getBean(Runner.class);
+        runner.run();
+//        SpringApplication application = new SpringApplication(Main.class);
+//        application.run(args);
     }
 
 }

@@ -1,8 +1,10 @@
 #logging:
 #  level: error
 #
+appl:
+  data:
+    questions: ./data/questions.csv
+    students: ./data/students.csv
 
-questions: ./data/questions.csv
-students: ./data/students.csv
-
-language: ru,RU
+locale:
+  language: ru,RU
