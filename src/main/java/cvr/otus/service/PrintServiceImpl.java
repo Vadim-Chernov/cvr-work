@@ -1,10 +1,10 @@
 package cvr.otus.service;
 
 import cvr.otus.config.LocaleProps;
+import cvr.otus.shell.SelectLanguageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.Locale;
@@ -19,7 +19,7 @@ public class PrintServiceImpl implements PrintService {
     private Iterator<String> scanner;
 
     private final MessageSource messageSource;
-    private final Locale locale;
+    private Locale locale;
 
     void setPrinter(Consumer<String> printer) {
         this.printer = printer;
