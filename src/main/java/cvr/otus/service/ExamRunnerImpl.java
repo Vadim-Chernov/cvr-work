@@ -15,7 +15,7 @@ public class ExamRunnerImpl implements ExamRunner {
     private final PrintService printService;
 
     @Autowired
-    public ExamRunnerImpl(QuestionService service,PrintService printService) {
+    public ExamRunnerImpl(QuestionService service, PrintService printService) {
         this.questionService = service;
         this.printService = printService;
     }
@@ -34,15 +34,14 @@ public class ExamRunnerImpl implements ExamRunner {
             res += dou;
         }
         printService.sayln("question.line");
-        printService.sayln("gradepoint.average", Double.toString ( res / size));
-        printService.sayln("str","============================================");
+        printService.sayln("gradepoint.average", Double.toString(res / size));
+        printService.sayln("str", "============================================");
     }
 
     private void examine() {
         printService.sayln("student.hello", student.getName());
         printService.sayln("program.attention");
-        for (int i = 0; i < questionService.
-                size(); i++) {
+        for (int i = 0; i < questionService.size(); i++) {
             printQuestion(questionService.getQuestion(i));
             answer(i);
         }
