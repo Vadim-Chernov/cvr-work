@@ -21,6 +21,10 @@ public class PrintServiceImpl implements PrintService {
     private final MessageSource messageSource;
     private Locale locale;
 
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
     void setPrinter(Consumer<String> printer) {
         this.printer = printer;
     }
