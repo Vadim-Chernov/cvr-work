@@ -1,3 +1,2 @@
-Aspects AccessAspect & LoggerAspect was added
-properties -> yml
-banner added
+Устранение замечаний.
+Использование @ShellMethodAvailability
