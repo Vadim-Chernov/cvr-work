@@ -1,7 +1,6 @@
 package cvr.otus.service;
 
 import cvr.otus.domain.Student;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.BDDMockito.given;
 
 @DisplayName("LoginServiceImplTest + Mock")
@@ -24,7 +24,7 @@ class LoginServiceImplMockTest {
     private LoginServiceImpl loginService;
 
     private ArrayList<String> words = new ArrayList<>();
-    private String printStr = "";
+//    private String printStr = "";
 
     @MockBean
     private PrintServiceImpl printService;

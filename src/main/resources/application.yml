@@ -7,7 +7,7 @@ appl:
     students: ./data/students.csv
 
 locale:
-  language: ar
+  language: ru
 
 spring:
   shell:

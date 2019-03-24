@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -23,21 +24,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class PrintServiceImplLanguageTest {
     @Autowired
-    private MessageSource messageSource;
-
-    private LocaleProps localeProps = mock(LocaleProps.class);
-
-    private PrintServiceImpl printService;// = mock(PrintServiceImpl.class);
-    private String printStr = "";
+    private PrintServiceImpl printService;
 
     private void say(String language, String nation) {
-        printStr = "";
-        when(localeProps.getLanguage()).thenReturn(language);
-        printService = new PrintServiceImpl(messageSource, localeProps);
-        printService.setPrinter(s -> printStr += s);
+        StringBuilder out = new StringBuilder();
+        printService.setLocale(new Locale(language));
+        printService.setPrinter(out::append);
         printService.say("test");
-        assertEquals(nation, printStr);
-
+        assertEquals(nation, out.toString());
     }
 
     @Test
@@ -51,6 +45,7 @@ class PrintServiceImplLanguageTest {
     void sayAr() {
         say("ar", "armenian");
     }
+
     @Test
     @DisplayName("  албанский ")
     void sayAl() {

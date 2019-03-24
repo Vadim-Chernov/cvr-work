@@ -22,15 +22,15 @@ class LoginServiceImplTest {
     private LoginServiceImpl loginService;
 
     private ArrayList<String> words = new ArrayList<>();
-    private String printStr = "";
     private PrintServiceImpl printService;
 
+    StringBuilder out;
 
     @BeforeEach
     void setUp() {
-        printStr = "";
+        out = new StringBuilder();
         printService = (PrintServiceImpl) loginService.getPrintService();
-        printService.setPrinter(s -> printStr += s);
+        printService.setPrinter(out::append);
     }
 
     @Test
@@ -53,6 +53,6 @@ class LoginServiceImplTest {
         printService.setScanner(words.iterator());
         Student student = loginService.login();
         assertNull(student);
-        assertTrue(printStr.contains("выход"));
+        assertTrue(out.toString().contains("выход"));
     }
 }

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Configuration
 public class Runner {
 
-    private PrintService ps;
-    private LoginService loginService;
-    private ExamRunner examRunner;
+    private final PrintService ps;
+    private final LoginService loginService;
+    private final ExamRunner examRunner;
 
     @Autowired
     public Runner(PrintService ps, LoginService loginService, ExamRunner examRunner) {
@@ -23,15 +23,20 @@ public class Runner {
         this.examRunner = examRunner;
     }
 
-    public Runner() {
-    }
+//    public void run() {
+//        ps.sayln("program.caption");
+//        Student student = loginService.login();
+//        if (student != null)
+//            examRunner.run(student);
+//    }
 
-    public void run(){
+    public Student login() {
         ps.sayln("program.caption");
         Student student = loginService.login();
-        if (student != null)
-            examRunner.run(student);
+        return student;
     }
 
-
+    public void examine(Student student){
+        examRunner.run(student);
+    }
 }
