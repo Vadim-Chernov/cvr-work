@@ -3,7 +3,6 @@ package cvr.otus.shell;
 import cvr.otus.Runner;
 import cvr.otus.domain.Student;
 import cvr.otus.service.PrintServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -16,12 +15,10 @@ public class ShellCommands {
     private Boolean authorized = false;
     private Student student= null;
 
-
     private final SelectLanguage service;
     private final PrintServiceImpl printService;
     private final Runner runner;
 
-//    @Autowired
     public ShellCommands(SelectLanguage service, PrintServiceImpl printService, Runner runner) {
         this.service = service;
         this.printService = printService;
@@ -54,6 +51,4 @@ public class ShellCommands {
     private Availability isAvailable() {
         return authorized ? Availability.available() : Availability.unavailable("Сначала необходимо авторизоваться!");
     }
-
-
 }
