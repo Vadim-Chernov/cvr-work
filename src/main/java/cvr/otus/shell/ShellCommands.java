@@ -36,19 +36,19 @@ public class ShellCommands {
 
 
     @ShellMethod("Login")
-    public Student log() {
+    public Student login() {
         student = runner.login();
         authorized = (student != null);
         return student;
     }
 
     @ShellMethod("Пройти тест")
-    @ShellMethodAvailability("isAvailable")
+    @ShellMethodAvailability("authorized")
     public void exam() {
         runner.examine(student);
     }
 
-    private Availability isAvailable() {
+    private Availability authorized() {
         return authorized ? Availability.available() : Availability.unavailable("Сначала необходимо авторизоваться!");
     }
 }
